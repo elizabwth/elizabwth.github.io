@@ -21,7 +21,7 @@
     },
     "cv": {
         "title": "cVision Dashboard",
-        "summary": "User account management for various paid videogame hacks. Designed, coded, self-hosted. Built with Python+Flask and PHP, plugging in to existing database of users. Logo designed by creator.",
+        "summary": "User account management for various paid videogame hacks. Designed, coded, self-hosted. Built with Python+Flask and PHP, plugging in to existing database of users. Logo designed the hack creator.",
         "screenshots": [
             "/static/projects/cv/login.gif",
             "/static/projects/cv/manage.gif"
