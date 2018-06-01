@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <!-- Fonts --> 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Jura" rel="stylesheet"> 
+    <link href="//fonts.googleapis.com/css?family=Montserrat:400,600,700|Jura" rel="stylesheet"> 
 
     <!-- js -->
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+      src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
       crossorigin="anonymous"></script>
     <script 
@@ -351,12 +351,6 @@
         <div class="row">
           <div class="col-md-4">
             <div class="data-l">
-              <div class=label>age</div>
-              <div class="data">24 (Feb 23, 1994)</div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="data-l">
               <div class=label>experience</div>
               <div class="data">4 Years</div>
             </div>
@@ -453,7 +447,7 @@
         
         <div class="btn-group">
           <a 
-            alt="Betting Contenders" href="https://bettingcontenders.com/"
+            alt="Betting Contenders" href="//bettingcontenders.com/"
             target="_blank"
             role="button" aria-disabled="true" 
             class="btn btn-sm btn-outline-secondary">
@@ -635,7 +629,7 @@
       var modal = $(this);
       console.log('modal open or close')
 
-      $.getJSON("/static/projects.json?fr=208", function(json) {
+      $.getJSON("/static/projects.json?fr=245", function(json) {
         var p = json[projectid];
 
         modal.find('#projectModalTitle').text(p.title);
@@ -656,7 +650,363 @@
     });
   //});
 </script>
+    <style>
+  .history {
+    min-height: 256px;
+    background: #C3C8CB;
+    padding: 12px 0px;  
+    /*border-top: 8px solid #545e75;*/
+  }
+  /*
+  body {  
+    margin: 0;
+    padding: 0;
+    background: rgb(230,230,230);
     
+    color: rgb(50,50,50);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 112.5%;
+    line-height: 1.6em;
+  }
+  */
+  /* ================ The Timeline ================ */
+
+  .timeline {
+    position: relative;
+    width: 660px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 1em 0;
+    list-style-type: none;
+  }
+
+  .timeline:before {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    content: ' ';
+    display: block;
+    width: 2px;
+    height: 100%;
+    margin-left: -1px;
+    background: #5A90FF;
+    background: -moz-linear-gradient(top, rgba(80,80,80,0) 0%, #545e75 8%, #545e75 92%, rgba(80,80,80,0) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(125,185,232,1)));
+    background: -webkit-linear-gradient(top, rgba(80,80,80,0) 0%, #545e75 8%, #545e75 92%, rgba(80,80,80,0) 100%);
+    background: -o-linear-gradient(top, rgba(80,80,80,0) 0%, #545e75 8%, #545e75 92%, rgba(80,80,80,0) 100%);
+    background: -ms-linear-gradient(top, rgba(80,80,80,0) 0%, #545e75 8%, #545e75 92%, rgba(80,80,80,0) 100%);
+    background: linear-gradient(to bottom, rgba(80,80,80,0) 0%, #545e75 8%, #545e75 92%, rgba(80,80,80,0) 100%);
+    
+    z-index: 5;
+  }
+
+  .timeline li {
+    padding: 1em 0;
+  }
+
+  .timeline li:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .direction-l {
+    position: relative;
+    width: 300px;
+    float: left;
+    text-align: right;
+  }
+
+  .direction-r {
+    position: relative;
+    width: 300px;
+    float: right;
+  }
+
+  .flag-wrapper {
+    position: relative;
+    display: inline-block;
+    
+    text-align: center;
+  }
+
+  .flag {
+    color: white;
+    position: relative;
+    display: inline;
+    background: rgb(50,50,50);
+    padding: 6px 10px;
+    border-radius: 5px;
+    
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .direction-l .flag {
+    -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+    box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  }
+
+  .direction-r .flag {
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  }
+
+  .direction-l .flag:before,
+  .direction-r .flag:before {
+    position: absolute;
+    top: 50%;
+    right: -36px;
+    content: ' ';
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin-top: -10px;
+    background: #fff;
+    border-radius: 10px;
+    border: 4px solid #545e75;
+    z-index: 10;
+  }
+
+  .direction-r .flag:before {
+    left: -36px;
+  }
+
+  .direction-l .flag:after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    height: 0;
+    width: 0;
+    margin-top: -8px;
+    border: solid transparent;
+    border-left-color: rgb(50,50,50);
+    border-width: 8px;
+    pointer-events: none;
+  }
+
+  .direction-r .flag:after {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    height: 0;
+    width: 0;
+    margin-top: -8px;
+    border: solid transparent;
+    border-right-color: rgb(50,50,50);
+    border-width: 8px;
+    pointer-events: none;
+  }
+
+  .time-wrapper {
+    display: inline;
+    
+    line-height: 1em;
+    font-size: 0.66666em;
+    color: #fff;
+    vertical-align: middle;
+  }
+
+  .direction-l .time-wrapper {
+    float: left;
+  }
+
+  .direction-r .time-wrapper {
+    float: right;
+  }
+
+  .time {
+    display: inline-block;
+    padding: 4px 6px;
+    background: rgb(50,50,50);
+  }
+
+  .desc {
+    margin: 1em 0.75em 0 0;
+    
+    font-size: 0.77777em;
+    font-style: italic;
+    line-height: 1.5em;
+  }
+
+  .direction-r .desc {
+    margin: 1em 0 0 0.75em;
+  }
+
+  /* ================ Timeline Media Queries ================ */
+
+  @media screen and (max-width: 660px) {
+
+  .timeline {
+    width: 100%;
+    padding: 4em 0 1em 0;
+  }
+
+  .timeline li {
+    padding: 2em 0;
+  }
+
+  .direction-l,
+  .direction-r {
+    float: none;
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .flag-wrapper {
+    text-align: center;
+  }
+
+  .flag {
+    background: rgb(50,50,50);
+    z-index: 15;
+  }
+
+  .direction-l .flag:before,
+  .direction-r .flag:before {
+    position: absolute;
+    top: -30px;
+    left: calc(50% + 3px);
+    content: ' ';
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin-left: -9px;
+    background: #fff;
+    border-radius: 10px;
+    /*border: 4px solid #545e75;*/
+    z-index: 10;
+  }
+
+  .direction-l .flag:after,
+  .direction-r .flag:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    height: 0;
+    width: 0;
+    margin-left: -8px;
+    border: solid transparent;
+    border-bottom-color: rgb(50,50,50);
+    border-width: 8px;
+    pointer-events: none;
+  }
+
+  .time-wrapper {
+    display: block;
+    position: relative;
+    margin: 4px 0 0 0;
+    z-index: 14;
+  }
+
+  .direction-l .time-wrapper {
+    float: none;
+  }
+
+  .direction-r .time-wrapper {
+    float: none;
+  }
+
+  .desc {
+    position: relative;
+    margin: 1em 0 0 0;
+    padding: 1em;
+    background: rgb(245,245,245);
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.20);
+    -moz-box-shadow: 0 0 1px rgba(0,0,0,0.20);
+    box-shadow: 0 0 1px rgba(0,0,0,0.20);
+    
+    z-index: 15;
+  }
+
+  .direction-l .desc,
+  .direction-r .desc {
+    position: relative;
+    margin: 1em 1em 0 1em;
+    padding: 1em;
+    
+    z-index: 15;
+  }
+
+  }
+
+  @media screen and (min-width: 400px ?? max-width: 660px) {
+
+  .direction-l .desc,
+  .direction-r .desc {
+    margin: 1em 4em 0 4em;
+  }
+
+  }
+</style>
+
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+
+<div class="history">
+  <div class="container">
+    <!--
+    <div style="margin-bottom: 8px;">
+      <h3 class="title">history</h3>
+    </div>
+    -->
+
+    <div class="">
+      <!-- timeline -->
+      <ul class="timeline">
+        <!-- Item 1 -->
+        <li>
+          <div class="direction-r">
+            <div class="flag-wrapper">
+              <span class="flag">Freelance</span>
+              <span class="time-wrapper"><span class="time">2013 - present</span></span>
+            </div>
+            <div class="desc">Under the umbrellas of "veravere" and "Elizabwth"</div>
+          </div>
+        </li>
+        
+        <!-- Item 2 -->
+        <li>
+          <div class="direction-l">
+            <div class="flag-wrapper">
+              <span class="flag">Survant James, LLC</span>
+              <span class="time-wrapper"><span class="time">2014-2015</span></span>
+            </div>
+            <div class="desc">Junior Software Engineer focused on mobile and web development in Portland, OR</div>
+          </div>
+        </li>
+        <!-- Item 3 -->
+        <li>
+          <div class="direction-r">
+            <div class="flag-wrapper">
+              <span class="flag">College</span>
+              <span class="time-wrapper"><span class="time">2014</span></span>
+            </div>
+            <div class="desc">...</div>
+          </div>
+        </li>
+
+        <!-- Item 4 -->
+        <li>
+          <div class="direction-l">
+            <div class="flag-wrapper">
+              <span class="flag">Cold Stone & Chilly Rock</span>
+              <span class="time-wrapper"><span class="time">2010-2012</span></span>
+            </div>
+            <div class="desc">Store manager for Chilly Rock Soda Shop and employee of Cold Stone Creamery in Yucaipa, CA.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
     <style>
   .experience {
     min-height: 256px;
@@ -787,7 +1137,7 @@
         <div class="tech col-md-9">
           <div>C#</div>
           <div>go (golang)</div>
-          <div>CSS/SASS/SCSS</div>
+
           
 
 
@@ -813,7 +1163,7 @@
 
 
     <!-- Popper.js, Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
   </body>
 </html>
