@@ -1,4 +1,14 @@
 {
+    "sw": {
+        "title": "Shader Wallpaper",
+        "summary": "Realtime shader wallpapers for Windows 10. Uses python with pyglet and tartley's pyglet-shaders library. Includes a repository of fragment shaders from glslsandbox.com with minor modifications.",
+        "screenshots": [
+            "/static/projects/sw/jelly.gif",
+            "/static/projects/sw/psyc.gif",
+            "/static/projects/sw/hills.gif",
+            "/static/projects/sw/glsl.png"
+        ]
+    },
     "bc": {
         "title": "Betting Contenders",
         "summary": "Always up-to-date analytical data for horse racing handicappers. Built from the ground up using Python+Flask and accompanying libraries. Designed, coded, self-hosted. Stripe used for ecommerce. User friendly admin inferface. Project involved reverse-engineering 3rd party Brisnet API. Responsive design.",
@@ -21,7 +31,7 @@
     },
     "cv": {
         "title": "cVision Dashboard",
-        "summary": "User account management for various paid videogame hacks. Designed, coded, self-hosted. Built with Python+Flask and PHP, plugging in to existing database of users. Logo designed the hack creator.",
+        "summary": "User account management for various paid videogame hacks. Designed, coded, self-hosted. Built with Python+Flask and PHP, plugging in to existing database of users. Logo designed by creator.",
         "screenshots": [
             "/static/projects/cv/login.gif",
             "/static/projects/cv/manage.gif"
